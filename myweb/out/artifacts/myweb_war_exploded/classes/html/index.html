@@ -1,0 +1,115 @@
+<!--DOCTYPE html-->
+<html lang="en"><!-- Basic -->
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+ 
+     <!-- Site Metas -->
+    <title>Login and Register tabbed form</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="classes/images/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="classes/images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link href="classes/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Site CSS -->
+    <link rel="stylesheet" href="classes/css/style.css">
+	<!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="classes/css/all.min.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="classes/css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="classes/css/custom.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+	<style>
+		#welcome {
+			text-align: center; /* 将内容水平居中 */
+			margin-top: 5%; /* 根据需要调整垂直居中的位置 */
+		}
+	</style>
+
+</head>
+
+<body>
+<div id="particles-js" class="main-form-box">
+	<div class="md-form">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="panel panel-login" style="width: 50vw">
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-lg-12">
+									<form id="login-form" action="classes/html/main.html" method="post" role="form" style="display: block;">
+										<div class="form-group" id="welcome">
+											<h1 style="font-size: 100px; word-wrap: break-word;">Welcome!</h1>
+											<h4>这是包慧敏和谢文析的webgis小组作业</h4>
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<div class="col-sm-6 offset-sm-3">
+													<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="GO ->">
+												</div>
+											</div>
+										</div>
+									</form>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<p class="footer-company-name">All Rights Reserved. &copy; 2018 <a href="#">Login Register</a> Design By : <a href="https://html.design/">html design</a></p>
+					
+				</div>
+			</div>
+		</div>	
+	</div>
+	
+</div>
+
+	
+<script src="classes/js/jquery.min.js"></script>
+<script src="classes/js/bootstrap.min.js"></script>
+<script src="classes/js/particles.min.js"></script>
+<script src="classes/js/index.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('#login-form-link').click(function(e) {
+				$("#login-form").delay(100).fadeIn(100);
+				$("#register-form").fadeOut(100);
+				$('#register-form-link').removeClass('active');
+				$(this).addClass('active');
+				e.preventDefault();
+			});
+			$('#register-form-link').click(function(e) {
+				$("#register-form").delay(100).fadeIn(100);
+				$("#login-form").fadeOut(100);
+				$('#login-form-link').removeClass('active');
+				$(this).addClass('active');
+				e.preventDefault();
+			});
+		});
+		
+		$('.form-group input').focus(function () {
+			$(this).parent().addClass('addcolor');
+		}).blur(function () {
+			$(this).parent().removeClass('addcolor');
+		});
+		
+	</script>
+</body>
+</html>

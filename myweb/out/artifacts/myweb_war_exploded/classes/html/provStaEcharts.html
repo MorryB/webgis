@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>按省份统计足迹数量</title>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            height: 100vh; /* 设置 body 的高度为视口高度 */
+            margin: 0; /* 去除 body 的默认边距 */
+        }
+        #main{
+            width: 100vw;
+            height:100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+    <script type="text/javascript">  //echarts：分省份足迹数量统计图标
+        let provStaList;
+        // 发送GET请求到Servlet
+        fetch('http://localhost:8080/myweb_war_exploded/provStaServlet') // 替换为你的Servlet的URL
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            }) // 解析JSON数据
+            .then(data => {
+                // 输出
+                console.log(data);
+                provStaList = JSON.parse(data);
+                loadEcharts();
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+
+        function loadEcharts() {
+            var chartDom = document.getElementById('main');
+            var myChart = echarts.init(chartDom);
+            var option;
+            myChart.showLoading();
+            option = {
+                title: { // 添加标题
+                    text: '分省足迹数量统计',
+                    left: 'center', // 标题居中
+                    top: '5%' // 距离顶部的位置
+                },
+                tooltip: {
+                    trigger: 'item', // 触发类型，默认为数据项触发
+                    formatter: '{b} : {c} ({d}%)' // 提示框内容格式器
+                },
+                legend: {
+                    top: 'bottom'
+                },
+                series: [
+                    {
+                        name: 'Footprints of each province Chart',
+                        type: 'pie',
+                        radius: [20, 140],
+                        center: ['50%', '50%'],
+                        roseType: 'area',
+                        itemStyle: {
+                            borderRadius: 8
+                        },
+                        data: provStaList
+                    }
+                ]
+            };
+            option && myChart.setOption(option);
+            myChart.hideLoading(); // 隐藏加载动画
+        }
+
+    </script>
+</body>
+</html>
